@@ -1,6 +1,6 @@
 PROJECT TITLE: Comment Header
 PURPOSE OF PROJECT: Make file, function, class, etc. commenting easier
-VERSION or DATE: 12-6-21
+DATE: 2-17-22
 HOW TO START THIS PROJECT: compile using "g++ commentHeader.cpp commentFunctions.cpp -o commentHeader" and run commentHeader
 AUTHORS: Samuel Howard
 
