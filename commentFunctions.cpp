@@ -191,7 +191,8 @@ void pythonCommentOut(string purposeInput)
 }
 
 // Windows clipboard copy:
-void toClipboard(HWND hwnd, const string &s){
+void toClipboard(HWND hwnd, const string &s)
+{
 	OpenClipboard(hwnd);
 	EmptyClipboard();	
 	HGLOBAL hg=GlobalAlloc(GMEM_MOVEABLE,s.size()+1);
