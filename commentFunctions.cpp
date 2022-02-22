@@ -1,7 +1,7 @@
 /****************************************************************************
  * Title: commentFunctions.cpp                                              *
  * Author: Samuel Howard, Computer Science Major                            *
- * Date: 12-06-2021                                                         *
+ * Date: 02-22-2022                                                         *
  *                                                                          *
  * Purpose: Functions of commentHeader.cpp                                  *
  ***************************************************************************/
@@ -20,11 +20,17 @@ void menuPrint()
             "2. C / C++ function\n" <<
             "3. C / C++ class\n" <<
             "4. Java file\n" << 
-            "5. Python file\n";
+            "5. Python file\n" <<
+            "6. Exit program\n";
     return;
 }
 
-// Validates integer choice as 1-4
+/****************************************************************************
+ * Function Name: validateChoice()                                          *
+ * Parameters: int& choice, int max                                         *
+ * Return: void                                                             *
+ * Purpose: Validates a user's integer input from 1 to max                  *
+ ***************************************************************************/
 void validateChoice(int& choice, int max)
 {
     if (choice >= 1 && choice <= max)
@@ -37,24 +43,22 @@ void validateChoice(int& choice, int max)
         cin.clear();
         cin.ignore(10000, '\n');
     }
-    else
-    {
-        cout << "Choice is invalid, please enter a number 1-" << max << ": ";
 
-        cin >> choice;
-        cout << endl;
-        // recursive call to check again
-        validateChoice(choice, max);
-    }
+    cout << "Choice is invalid, please enter a number 1-" << max << ": ";
+
+    cin >> choice;
+    cout << endl;
+    // recursive call to check again
+    validateChoice(choice, max);
     
 }
 
-/*
- * Function Name: validateInput()
- * Parameters: Character (Pointer) to validate
- * Retruns: A character
- * Purpose: Makes sure user enters y or n 
- */
+/****************************************************************************
+ * Function Name: validateInput()                                           *
+ * Parameters: Character (pointer) to validate                              *
+ * Return: void, validated character by reference                           *
+ * Purpose: Makes sure the user enters y or n                               *
+ ***************************************************************************/
 void validateInput(char& validChar)
 {
     // y or n
@@ -78,7 +82,14 @@ void validateInput(char& validChar)
     validateInput(validChar);
 }
 
-// Finds last space before checkLength characters
+/****************************************************************************
+ * Function Name: findLastSpace()                                           *
+ * Parameters: string to check, int checkLength (how wide can the text      *
+ *             be)                                                          *
+ * Return: int index of the last space before overflow would occur          *
+ * Purpose: Find the last space before checkLength characters. It is used   *
+ *          to limit the width of comments, making them more consistent.    *
+ ***************************************************************************/
 int findLastSpace(string toCheck, int checkLength)
 {
     int first, last;
@@ -95,7 +106,15 @@ int findLastSpace(string toCheck, int checkLength)
     return last;
 }
 
-// Function to send out c comments
+/****************************************************************************
+ * Function Name: cCommentOut()                                             *
+ * Parameters: string type (ex. Purpose), string comment input of the       *
+ *             user to be formatted into the box.                           *
+ * Return: void, output is stored in string output                          *
+ * Purpose: Push to (global) output a type for the output (ex. Purpose).    *
+ *          Formats within the standard box ending the line with the        *
+ *          global cEnd string.                                             *
+ ***************************************************************************/
 void cCommentOut(string type, string comment)
 {
     string clipboardCache;
@@ -139,7 +158,14 @@ void cCommentOut(string type, string comment)
     }
 }
 
-// Java's output function
+/****************************************************************************
+ * Function Name: javaCommentOut()                                          *
+ * Parameters: string user input to be formatted as the purpose.            *
+ * Return: void, output is stored in string output                          *
+ * Purpose: Push to (global) output a type for the output (ex. Purpose).    *
+ *          Formats within the standard box without a fancy ending for      *
+ *          Javadocs. Very similar to cCommentOut().                        *
+ ***************************************************************************/
 void javaCommentOut(string purposeInput)
 {
     // Variable(s)
@@ -165,7 +191,14 @@ void javaCommentOut(string purposeInput)
     }
 }
 
-// Python's output function
+/****************************************************************************
+ * Function Name: pythonCommentOut()                                        *
+ * Parameters: string user input to be formatted as the purpose             *
+ * Return: void, output is stored in string output                          *
+ * Purpose: Push to (global) output a type for the output (currently only   *
+ *          purpose). Formats within the standard box like all of the       *
+ *          other language comment outs.                                    *
+ ***************************************************************************/
 void pythonCommentOut(string purposeInput)
 {
     // Variable(s)
@@ -176,7 +209,7 @@ void pythonCommentOut(string purposeInput)
     // format the purpose
     while(purposeLeft)
     {
-        index = findLastSpace(purposeInput, 76);
+        index = findLastSpace(purposeInput, 70);
         sstream << "# " << purposeInput.substr(0, index + 1) << "\n";
         getline(sstream, clipboardCache);
         output += clipboardCache + "\n";

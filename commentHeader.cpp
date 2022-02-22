@@ -1,11 +1,9 @@
 /**************************************************************************
  * Title: commentHeader.cpp                                               *
  * Author: Samuel Howard                                                  *
- * Date: 12-06-2021                                                       *
+ * Date: 02-22-2022                                                       *
  * Purpose: Generate a comment header for C++, Java, Python and any other *
  *          language that uses the same multiline comment as any of them. *
- *                                                                        *
- * Compile: g++ commentHeader.cpp commentFunctions.cpp -o commentHeader   *
  *************************************************************************/
 
 #include "commentHeader.h"
@@ -26,9 +24,16 @@ int main()
         // Choose the language
         menuPrint();
         cin >> languageChoice;
-        validateChoice(languageChoice, 5);
+        validateChoice(languageChoice, 6);
 
-        // Get program purpose:
+        // If exit is chosen, end the program
+        if(languageChoice == 6)
+        {
+            cout << "\nGoodbye.\n";
+            return 0;
+        }
+
+        // Get program/function/class purpose:
         cin.ignore();
         cout << "Please input the purpose: " << endl;
         getline(cin, purposeInput);
@@ -113,7 +118,7 @@ int main()
 
                 break;
 
-            // Javadocs
+            // Javadocs file header
             case 4:
                 cout << endl << "Copy this:" << endl << endl;
 
@@ -140,7 +145,7 @@ int main()
                 cout << endl << "Copy this:" << endl << endl;
 
                 // Python comment start
-                output += "#############################################################################\n";
+                output += "########################################################################\n";
                 
                 // Send the purpose to Python's output function
                 pythonCommentOut(purposeInput);
@@ -154,7 +159,7 @@ int main()
                 output += clipboardCache;
 
                 // Python comment end
-                output += "\n#############################################################################\n";
+                output += "\n########################################################################\n";
                 break;
             
             default:
@@ -182,10 +187,12 @@ int main()
         cin >> genAgain;
         validateInput(genAgain);
 
+        // If no, end
         if(tolower(genAgain) == 'n')
         {
             again = false;
         }
+        // If yes, prepare for next comment
         else
         {
             cout << endl;

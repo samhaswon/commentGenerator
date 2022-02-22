@@ -1,7 +1,6 @@
 #ifndef COMMENTHEADER_H
 #define COMMENTHEADER_H
 
-
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -13,20 +12,21 @@
 
 using namespace std;
 
-
 // Global stuff:
+
 /* 
  * For open c comments, comment out the upper declaration
  * and un-comment the lower declaration
  */
 const string cEnd = " *\n", cHead = "/****************************************************************************", cFoot = " ***************************************************************************/";
 // const string cEnd = " \n", cHead = "/*", cFoot = " */";
-const string author = "Samuel Howard, Computer Science Major"; // Name, major
+const string author = "Samuel Howard, Computer Science Major"; // Name
 inline stringstream sstream;
 inline string output = ""; // Holds whole output for clipboard (in windows for now) and finished output
 
 
 // Functions:
+
 void cCommentOut(string type, string comment);
 int findLastSpace(string toCheck, int checkLength);
 void javaCommentOut(string purposeInput);
