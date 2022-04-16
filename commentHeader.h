@@ -1,5 +1,4 @@
-#ifndef COMMENTHEADER_H
-#define COMMENTHEADER_H
+#pragma once
 
 #include <iostream>
 #include <iomanip>
@@ -35,5 +34,3 @@ void pythonCommentOut(string purposeInput);
 void toClipboard(HWND hwnd, const std::string &s);
 void validateChoice(int& choice, int max = 4);
 void validateInput(char& validChar);
-
-#endif
